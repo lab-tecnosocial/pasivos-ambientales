@@ -93,7 +93,7 @@ iframe {
 .entradilla,
 .oscuro {
     background-color: #302724;
-    color: white;
+    color: #E9E2DF;
 }
 
 .entradilla p {
@@ -107,8 +107,8 @@ iframe {
 }
 
 .claro {
-    background-color: white;
-    color: black;
+    background-color: #E9E2DF;
+    color: #302724;
 }
 
 .autor {
