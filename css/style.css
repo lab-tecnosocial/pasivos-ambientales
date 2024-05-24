@@ -38,7 +38,6 @@ p {
 }
 
 iframe {
-    z-index: 0;
     border: none;
 }
 
@@ -47,7 +46,7 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 0;
 
 }
 
@@ -170,8 +169,10 @@ canvas {
 
 /* mapa1 */
 #mapa1 {
+    position: relative;
     height: 100vh;
     width: 100vw;
+    z-index: 2;
 }
 
 #mapa1 h2 {
