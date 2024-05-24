@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.panellayers/dist/leaflet.panellayers.css" />
+    <script src="https://unpkg.com/leaflet.panellayers"></script>
     <style>
         * {
             margin: 0;
@@ -31,60 +33,111 @@
     <script>
         var map = L.map('map', {
             scrollWheelZoom: false,
-            dragging: false,
+            dragging: true,
         }).setView([-16.55, -65.3810], 6);
         L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwk08f3x02y301ql3q53aac4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2ttaHJ2N2FwMGE4NjJ5cXVneHN2cWRzYiJ9.MT3xcDnYAz2m1LvjBHRQwQ', {
             maxZoom: 19,
         }).addTo(map);
 
-        var areasProtegidas = L.geoJSON.ajax("data/areas-protegidas.geojson", {
+        var rios = L.geoJSON.ajax("data/rios.geojson", {
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.Nombre_AP);
+                layer.bindPopup(`
+                    <b>${feature.properties['NOMBRE']}</b><br>
+                    Tipo: ${feature.properties['CATEG_DES']}<br>
+                `);
             }
         });
 
         var minas = L.geoJSON.ajax("data/minas.geojson", {
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties['Nombre de la mina']);
+                layer.bindPopup(`
+                    <b>${feature.properties['MINA']}</b><br>
+                    Departamento: ${feature.properties['DEPARTAMEN']}<br>
+                    Municipio: ${feature.properties['MUNICIPIO']}<br>
+                    Tipo de pasivo: ${feature.properties['TIPO_DE_PA']}
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 2,
+                    fillColor: "red",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+
+                });
             }
         });
+
+
+        var localidades = L.geoJSON.ajax("data/localidades.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <b>${feature.properties['nombre_c_2']}</b><br>
+                    Departamento: ${feature.properties['nombre_dep']}<br>
+                    Población: ${feature.properties['poblacion_']}<br>
+                    Viviendas: ${feature.properties['viviendas_']}<br>
+                
+                `);
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 2,
+                    fillColor: "yellow",
+                    color: "#000",
+                    fillOpacity: 0.8,
+                    stroke: false
+                });
+            }
+        });
+
+
 
         var buffer1km = L.geoJSON.ajax("data/buffer-1km.geojson", {
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('Buffer 1km');
+            },
+            style: function () {
+                return {
+                    color: "brown",
+                    fillOpacity: 0.1
+                };
             }
         });
 
-        var localidades = L.geoJSON.ajax("data/localidades.geojson", {
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.Nombre_c_2);
-            }
-        });
 
-        var rios = L.geoJSON.ajax("data/rios.geojson", {
+
+        var areasProtegidas = L.geoJSON.ajax("data/areas-protegidas.geojson", {
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.Nombre);
+                layer.bindPopup(`
+                <<b>${feature.properties['NOMBRE_AP_']}</b><br>
+                Categoria: ${feature.properties['CATEGORIA']}<br>
+                `);
+            },
+            style: function () {
+                return {
+                    color: "green",
+                    fillOpacity: 0.5
+                };
             }
         });
 
         // Add layers to the map
-        areasProtegidas.addTo(map);
         minas.addTo(map);
-        buffer1km.addTo(map);
         localidades.addTo(map);
-        rios.addTo(map);
 
         // Add layer controls
+
         var overlayMaps = {
-            "Areas Protegidas": areasProtegidas,
-            "Minas": minas,
-            "Buffer 1km": buffer1km,
-            "Localidades": localidades,
-            "Rios": rios
+            "🟦 Rios": rios,
+            "🟨 Comunidades": localidades,
+            "🟥 Pasivos": minas,
+            "🟫 Afectación": buffer1km,
+            "🟩 Areas Protegidas": areasProtegidas,
         };
 
         L.control.layers(null, overlayMaps, {
-            collaped: false,
+            collapsed: false,
             position: 'bottomright'
         }).addTo(map);
 
