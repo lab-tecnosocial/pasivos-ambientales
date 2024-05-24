@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map', {
+            scrollWheelZoom: false,
+            dragging: false,
+        }).setView([-16.55, -65.3810], 6);
+        L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwk08f3x02y301ql3q53aac4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2ttaHJ2N2FwMGE4NjJ5cXVneHN2cWRzYiJ9.MT3xcDnYAz2m1LvjBHRQwQ', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var areasProtegidas = L.geoJSON.ajax("data/areas-protegidas.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.Nombre_AP);
+            }
+        });
+
+        var minas = L.geoJSON.ajax("data/minas.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties['Nombre de la mina']);
+            }
+        });
+
+        var buffer1km = L.geoJSON.ajax("data/buffer-1km.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('Buffer 1km');
+            }
+        });
+
+        var localidades = L.geoJSON.ajax("data/localidades.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.Nombre_c_2);
+            }
+        });
+
+        var rios = L.geoJSON.ajax("data/rios.geojson", {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.Nombre);
+            }
+        });
+
+        // Add layers to the map
+        areasProtegidas.addTo(map);
+        minas.addTo(map);
+        buffer1km.addTo(map);
+        localidades.addTo(map);
+        rios.addTo(map);
+
+        // Add layer controls
+        var overlayMaps = {
+            "Areas Protegidas": areasProtegidas,
+            "Minas": minas,
+            "Buffer 1km": buffer1km,
+            "Localidades": localidades,
+            "Rios": rios
+        };
+
+        L.control.layers(null, overlayMaps, {
+            collaped: false,
+            position: 'bottomright'
+        }).addTo(map);
+
+    </script>
+</body>
+
+</html>
