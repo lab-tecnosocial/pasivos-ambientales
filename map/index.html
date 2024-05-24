@@ -32,10 +32,10 @@
     <div id="map"></div>
     <script>
         var map = L.map('map', {
-            scrollWheelZoom: false,
             dragging: true,
-        }).setView([-16.55, -65.3810], 6);
-        L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwk08f3x02y301ql3q53aac4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2ttaHJ2N2FwMGE4NjJ5cXVneHN2cWRzYiJ9.MT3xcDnYAz2m1LvjBHRQwQ', {
+            scrollWheelZoom: false,
+        }).setView([-16.55, -65.3810], 7);
+        L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwku9msj00br01p6g08s1j3l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2ttaHJ2N2FwMGE4NjJ5cXVneHN2cWRzYiJ9.MT3xcDnYAz2m1LvjBHRQwQ', {
             maxZoom: 19,
         }).addTo(map);
 
@@ -45,6 +45,11 @@
                     <b>${feature.properties['NOMBRE']}</b><br>
                     Tipo: ${feature.properties['CATEG_DES']}<br>
                 `);
+            },
+            style: function () {
+                return {
+                    weight: 0.8
+                };
             }
         });
 
@@ -123,6 +128,7 @@
         });
 
         // Add layers to the map
+        rios.addTo(map);
         minas.addTo(map);
         localidades.addTo(map);
 
