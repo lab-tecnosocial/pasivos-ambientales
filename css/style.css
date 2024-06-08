@@ -35,10 +35,18 @@ h1 {
 p {
     margin-top: 1em;
     margin-bottom: 1em;
+    font-size: 19px;
 }
 
 iframe {
     border: none;
+}
+
+.fotos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
 }
 
 /* canvas on top */
@@ -91,6 +99,11 @@ canvas {
     animation: zoom 2s ease-in-out forwards;
 }
 
+a {
+   color: #EC7932;
+   text-decoration: underline;
+}
+
 #politicos {
     position: absolute;
     top: 50%;
@@ -129,6 +142,14 @@ canvas {
 
 .autor {
     text-align: right;
+}
+
+.pie_foto {
+    font-style: italic;
+    color: #d26a29;
+    font-size: 16px;
+    font-style: bold;
+    text-align: center;
 }
 
 /* figures and images */
