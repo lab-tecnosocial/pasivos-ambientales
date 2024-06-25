@@ -56,6 +56,18 @@ iframe {
     border: none;
 }
 
+.fotos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 460px;
+    margin-bottom: -45px;
+    margin-top: -30px;
+    overflow: hidden;
+}
+
+
 /* canvas on top */
 canvas {
     position: absolute;
@@ -106,6 +118,11 @@ canvas {
     animation: zoom 2s ease-in-out forwards;
 }
 
+a {
+    color: #EC7932;
+    text-decoration: underline;
+}
+
 #politicos {
     position: absolute;
     top: 50%;
@@ -144,6 +161,14 @@ canvas {
 
 .autor {
     text-align: right;
+}
+
+.pie_foto {
+    font-style: italic;
+    color: #d26a29;
+    font-size: 16px;
+    font-style: bold;
+    text-align: center;
 }
 
 /* figures and images */
