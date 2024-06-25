@@ -11,6 +11,8 @@ window.requestAnimFrame = (function () {
     };
 })();
 
+
+
 function Scene() {
     this.animation = undefined;
     this.canvas = undefined;
@@ -20,6 +22,8 @@ function Scene() {
     this.paused = false;
     this.stats = undefined;
     this.istats = undefined;
+    this.lastFrameTime = Date.now();
+    this.frameInterval = 1000 / 30; // Throttle to 30 FP
 }
 Scene.prototype = {
     constructor: Scene,
@@ -41,18 +45,25 @@ Scene.prototype = {
         }
     },
     animate: function () {
-        if (!this.paused) {
+        var now = Date.now();
+        var elapsed = now - this.lastFrameTime;
+        if (elapsed > this.frameInterval) {
+            if (!this.paused) {
+                requestAnimFrame(this.animate.bind(this));
+                this.lastFrameTime = now - (elapsed % this.frameInterval);
+            }
+            this.stats && (this.istats.begin());
+            this.animation(this);
+            this.stats && (this.istats.end());
+        } else {
             requestAnimFrame(this.animate.bind(this));
         }
-        this.stats && (this.istats.begin());
-        this.animation(this);
-        this.stats && (this.istats.end());
     }
 };
 
 var scene = new Scene(),
     particles = [],
-    len = 10000, // number of particles
+    len = 5000, // number of particles
     height = document.body.offsetHeight,
     width = document.body.offsetWidth;
 
