@@ -35,7 +35,7 @@ h1 {
 p {
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 24px;
+    font-size: 21px;
 
 }
 
@@ -67,6 +67,14 @@ iframe {
     overflow: hidden;
 }
 
+.genially {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin-bottom: -45px;
+    margin-top: -30px;
+}
 
 canvas {
     position: absolute;
