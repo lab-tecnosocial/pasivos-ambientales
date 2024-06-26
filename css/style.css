@@ -35,7 +35,7 @@ h1 {
 p {
     margin-top: 1em;
     margin-bottom: 1em;
-    font-size: 24px !important;
+    font-size: 24px;
 
 }
 
@@ -68,7 +68,6 @@ iframe {
 }
 
 
-/* canvas on top */
 canvas {
     position: absolute;
     top: 0;
@@ -89,10 +88,11 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width: 100%;
     z-index: 2;
     color: white;
     padding: 1rem;
+    width: 100%;
+    max-width: 1024px;
 }
 
 #intro-video {
@@ -199,7 +199,7 @@ a {
 .text-block {
     padding: 4em;
     margin-inline: auto;
-    max-width: clamp(500px, 90%, 800px);
+    max-width: 800px;
     text-align: justify;
 }
 
@@ -215,9 +215,21 @@ a {
     z-index: 2;
 }
 
-#mapa1 h2 {
+#titulo-mapa {
     height: 10%;
+}
+
+#mapa1 iframe {
+    height: 90%;
+    width: 100%;
+}
+
+#mapa1 h2 {
     text-align: center;
+}
+
+#mapa1 p {
+    font-size: 20px;
 }
 
 /* galeria1 */
@@ -299,7 +311,17 @@ a {
         flex-direction: column;
     }
 
+    .text-block {
+        padding: 1.5em;
+    }
 
+    #mapa1 h2 {
+        font-size: 18px;
+    }
+
+    #mapa1 p {
+        font-size: 16px;
+    }
 }
 
 /* animations */

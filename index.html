@@ -22,14 +22,15 @@
             <section id="intro">
                 <figure id="intro-fig" class="figure__full">
                     <img src="assets/portada/background.jpg" class="image__full" id="background">
-                    <canvas id="canvas" tabindex="0"></canvas>
+                    <!-- <canvas id="canvas" tabindex="0"></canvas> -->
                     <img src="assets/portada/politicos.png" id="politicos">
-                    <h1 id="cinta">Bolivia, el país de la tierra envenenada</h1>
+                    <img src="assets/portada/titulo.png" id="cinta">
                 </figure>
             </section>
             <section class="entradilla oscuro">
                 <div class="text-block">
-                    <p>Hay más de mil sitios plagados de residuos mineros abandonados en el territorio boliviano. La
+                    <p id="sumario">Hay más de mil sitios plagados de residuos mineros abandonados en el territorio
+                        boliviano. La
                         remediación es una cuenta pendiente, por vacíos legales y normativas ambiguas que dejó el Estado
                         y favorecen a los extractivistas. El saldo son pobladores intoxicados con metales pesados y ríos
                         muertos en 326 comunidades que viven en el área de influencia de estos pasivos ambientales.
@@ -134,10 +135,13 @@
             </section>
 
             <section id="mapa1">
-                <h2 style="margin-bottom: -20px;">Mapa de comunidades afectadas por pasivos ambientales</h2>
-                <p style="text-align: center;">Explora este mapa interactivo para conocer las comunidades afectadas por
-                    pasivos ambientales mineros.</p>
-                <iframe src="map/index.html" width="100%" height="90%" style="z-index: 50"></iframe>
+                <div id="titulo-mapa">
+                    <h2 style="margin-bottom: -20px;">Mapa de comunidades afectadas por pasivos ambientales</h2>
+                    <p style="text-align: center;">Explora este mapa interactivo para conocer las comunidades afectadas
+                        por
+                        pasivos ambientales mineros.</p>
+                </div>
+                <iframe src="map/index.html" width="100%" style="z-index: 50"></iframe>
             </section>
 
             <section class="claro">
@@ -226,7 +230,8 @@
                         <a href="https://soundcloud.com/acceso-investigativo" title="ACCESO INVESTIGATIVO"
                             target="_blank" style="color: #cccccc; text-decoration: none;">ACCESO INVESTIGATIVO</a> · <a
                             href="https://soundcloud.com/acceso-investigativo/cristina-monzon" title="Cristina Monzón"
-                            target="_blank" style="color: #cccccc; text-decoration: none;">Cristina Monzón</a></div>
+                            target="_blank" style="color: #cccccc; text-decoration: none;">Cristina Monzón</a>
+                    </div>
 
                     <p class="pie_foto">Audio: Cristina Monzón, miembro del Comité de Medio Ambiente, relata su lucha
                         contra los operadores mineros.</p>
@@ -550,9 +555,9 @@
             <section class="oscuro" id="footer">
                 <div class="text-block">
                     <p>Redacción periodística: <br><span class="rojo">Daniel Rivera Matirayo</span></p>
+                    <p>Diseño gráfico e ilustraciones:<br> <span class="rojo">Valeria Peredo</span></p>
                     <p>Procesamiento Sistemas de Información Geográfica:<br> <span class="rojo">Abigail Roque</span></p>
                     <p>Desarrollo y armado web:<br> <span class="rojo">Alex Ojeda Copa</span></p>
-                    <p>Diseño gráfico e ilustraciones:<br> <span class="rojo">Valeria Peredo</span></p>
                     <p>Apoyo editorial y multimedia:<br> <span class="rojo">Equipo CONNECTAS</span></p>
                     <div id="logos">
                         <a href="https://accesoinvestigativo.com/"><img src="assets/logos/acceso.svg" alt=""></a>
