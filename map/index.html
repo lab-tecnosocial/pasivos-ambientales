@@ -41,8 +41,10 @@
 
         var rios = L.geoJSON.ajax("data/rios.geojson", {
             onEachFeature: function (feature, layer) {
+                let nombre = feature.properties['NOMBRE'] ? feature.properties['NOMBRE'] : '';
+
                 layer.bindPopup(`
-                    <b>${feature.properties['NOMBRE']}</b><br>
+                    <b>${nombre}</b><br>
                     Tipo: ${feature.properties['CATEG_DES']}<br>
                 `);
             },
@@ -135,8 +137,8 @@
         // Add layer controls
 
         var overlayMaps = {
-            "🟦 Rios": rios,
-            "🟩  Comunidades": localidades,
+            "🟦 Rios afectados": rios,
+            "🟩  Comunidades afectadas": localidades,
             "🟥 Pasivos": minas,
             // "🟫 Afectación": buffer1km,
             // "🟩 Areas Protegidas": areasProtegidas,
