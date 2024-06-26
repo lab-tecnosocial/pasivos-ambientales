@@ -88,7 +88,7 @@
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: 2,
-                    fillColor: "yellow",
+                    fillColor: "green",
                     color: "#000",
                     fillOpacity: 0.8,
                     stroke: false
@@ -98,34 +98,34 @@
 
 
 
-        var buffer1km = L.geoJSON.ajax("data/buffer-1km.geojson", {
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup('Buffer 1km');
-            },
-            style: function () {
-                return {
-                    color: "brown",
-                    fillOpacity: 0.1
-                };
-            }
-        });
+        // var buffer1km = L.geoJSON.ajax("data/buffer-1km.geojson", {
+        //     onEachFeature: function (feature, layer) {
+        //         layer.bindPopup('Buffer 1km');
+        //     },
+        //     style: function () {
+        //         return {
+        //             color: "brown",
+        //             fillOpacity: 0.1
+        //         };
+        //     }
+        // });
 
 
 
-        var areasProtegidas = L.geoJSON.ajax("data/areas-protegidas.geojson", {
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup(`
-                <<b>${feature.properties['NOMBRE_AP_']}</b><br>
-                Categoria: ${feature.properties['CATEGORIA']}<br>
-                `);
-            },
-            style: function () {
-                return {
-                    color: "green",
-                    fillOpacity: 0.5
-                };
-            }
-        });
+        // var areasProtegidas = L.geoJSON.ajax("data/areas-protegidas.geojson", {
+        //     onEachFeature: function (feature, layer) {
+        //         layer.bindPopup(`
+        //         <<b>${feature.properties['NOMBRE_AP_']}</b><br>
+        //         Categoria: ${feature.properties['CATEGORIA']}<br>
+        //         `);
+        //     },
+        //     style: function () {
+        //         return {
+        //             color: "green",
+        //             fillOpacity: 0.5
+        //         };
+        //     }
+        // });
 
         // Add layers to the map
         rios.addTo(map);
@@ -136,10 +136,10 @@
 
         var overlayMaps = {
             "🟦 Rios": rios,
-            "🟨 Comunidades": localidades,
+            "🟩  Comunidades": localidades,
             "🟥 Pasivos": minas,
-            "🟫 Afectación": buffer1km,
-            "🟩 Areas Protegidas": areasProtegidas,
+            // "🟫 Afectación": buffer1km,
+            // "🟩 Areas Protegidas": areasProtegidas,
         };
 
         L.control.layers(null, overlayMaps, {
