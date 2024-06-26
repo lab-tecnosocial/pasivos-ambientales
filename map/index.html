@@ -32,9 +32,9 @@
     <div id="map"></div>
     <script>
         var map = L.map('map', {
-            dragging: true,
+            dragging: !L.Browser.mobile,
             scrollWheelZoom: false,
-        }).setView([-16.55, -65.3810], 7);
+        }).setView([-16.55, -66.3810], 7);
         L.tileLayer('https://api.mapbox.com/styles/v1/labtecnosocial/clwku9msj00br01p6g08s1j3l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFidGVjbm9zb2NpYWwiLCJhIjoiY2ttaHJ2N2FwMGE4NjJ5cXVneHN2cWRzYiJ9.MT3xcDnYAz2m1LvjBHRQwQ', {
             maxZoom: 19,
         }).addTo(map);
@@ -137,7 +137,7 @@
         // Add layer controls
 
         var overlayMaps = {
-            "🟦 Rios afectados": rios,
+            "🟦 Rios afectados directamente": rios,
             "🟩  Comunidades afectadas": localidades,
             "🟥 Pasivos": minas,
             // "🟫 Afectación": buffer1km,
