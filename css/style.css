@@ -108,6 +108,36 @@ canvas {
     max-width: 1024px;
 }
 
+#logos-portada {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 10px;
+}
+
+#container-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+#logos-portada img {
+    width: 90px;
+    height: auto;
+}
+
 #intro-video {
     width: 100%;
     height: 100vh;
@@ -283,6 +313,7 @@ a {
 #logos {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2em;
     padding: 1em;
 }
@@ -359,9 +390,23 @@ a {
         width: 94vw;
     }
 
-    #logos {
-        align-items: center;
+    #logos img {
+        width: 80px;
+        height: auto;
+    }
+
+    #logos-portada {
+        top: 90%;
         flex-direction: column;
+    }
+
+    #logos-portada img {
+        width: 77px;
+        height: auto;
+    }
+
+    #container-logo {
+        margin-bottom: -1em;
     }
 }
 
